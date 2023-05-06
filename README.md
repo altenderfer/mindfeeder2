@@ -41,9 +41,9 @@ The input data should be in JSON format, with each element containing an "instru
 ```
 [
   {
-    "instruction": "What is the capital of France?",
-    "input": "France is a country in Western Europe with a rich history and diverse culture.",
-    "output": "The capital of France is Paris."
+    "instruction": "What is \"viewable CPM\" in relation to Display ads?",
+    "input": "\"Viewable CPM\" refers to how much it costs for 1000 impressions of your ad. While many different bidding strategies are available for Display ads, it is important to remember that certain domains will command different rates for real estate on their sites. SEMrush found that the average rate was $2.80, so experimenting around that rate may be beneficial.",
+    "output": "\"Viewable CPM\" refers to how much it costs for 1000 impressions of your ad."
   }
 ]
 ```
