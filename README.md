@@ -20,7 +20,7 @@ pip install openai
 To use this program, run the following command:
 
 ```bash
-python generator.py --apikey API_KEY --model MODEL_NAME --input INPUT_FILE --output OUTPUT_FILE --num_instructions NUM_INSTRUCTIONS --start_index START_INDEX --max_workers MAX_WORKERS --prompt_input PROMPT_INPUT --filter FILTER_RESULTS
+python mindfeeder2-open-ai-gen.py --apikey API_KEY --model MODEL_NAME --input INPUT_FILE --output OUTPUT_FILE --num_instructions NUM_INSTRUCTIONS --start_index START_INDEX --max_workers MAX_WORKERS --prompt_input PROMPT_INPUT --filter FILTER_RESULTS
 ```
 
 Replace the placeholders with the appropriate values:
