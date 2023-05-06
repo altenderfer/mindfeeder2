@@ -2,7 +2,7 @@
 
 # Mindfeeder-2 OpenAI Generator
 
-This program is designed to generate new instruction, input, and output (IIO) pairs using OpenAI's GPT-3.5-turbo. Given an input dataset containing IIO pairs, the script will generate new variations for each pair using the provided API key.
+This program is designed to generate new instruction, input, and output (IIO) pairs using OpenAI's GPT-3.5-turbo (Or any spcified model). Given an input dataset containing IIO pairs, the script will generate new variations for each pair using the provided API key.
 
 ## Requirements
 
