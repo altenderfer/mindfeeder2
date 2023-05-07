@@ -82,7 +82,7 @@ The ```--filter``` argument enables or disables the filtering of generated instr
 You can try adjusting the ```--prompt_input``` command line argument to provide additional context or guidance for the model. This may help in generating more relevant and accurate instruction and output pairs. See the sample below:
 
 ```
-python mindfeeder1-open-ai-gen.py --apikey=your_api_key --input=input.txt --prompt_input "Be very detailed with your responses and use bullet points in necessary to organize the outputs."
+python mindfeeder2-open-ai-gen.py --apikey=your_api_key --input=input.txt --prompt_input "Be very detailed with your responses and use bullet points in necessary to organize the outputs."
 ```
 
 ### How can I obtain an API key for OpenAI?
