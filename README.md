@@ -89,9 +89,6 @@ python mindfeeder1-open-ai-gen.py --apikey=your_api_key --input=input.txt --prom
 
 To obtain an API key, you will need to sign up for an OpenAI account. Visit the OpenAI API Pricing page for more information on available plans and pricing.
 
-### Can I use a different model other than GPT-3.5-turbo?
-
-Yes, you can specify a different model using the --model command-line argument when running the generator script. However, the performance and results may vary depending on the model used. Currently ALL complete models are supported.
 
 ### What is --max_workers and its recommended settings?
 
