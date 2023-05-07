@@ -54,6 +54,68 @@ The input data should be in JSON format, with each element containing an "instru
 
 The generated data will be saved in the specified output file in JSON format, similar to the input data format.
 
+# Frequently Asked Questions (FAQs)
+
+### What is the purpose of this script?
+
+This script is designed to generate instruction, input and output pairs based on a given instruction, input and output JSON using OpenAI's GPT-3.5-turbo model. It's useful for creating datasets for AI training and testing purposes, as well as generating question, context and answer pairs for various applications.
+
+### Can I use other OpenAI models with this script?
+
+Yes, you can use other OpenAI models by changing the ```--model``` command line argument. However, the script has been optimized for the GPT-3.5-turbo model, and using other models may produce unexpected results. However, all chat completetion models are supposed below:
+
+
+```--model gpt-3.5-turbo``` (8,192 max tokens)
+
+```--model gpt-4``` (8,192 max tokens)
+
+```--model gpt-4-32k``` (32,768 max tokens)
+
+
+### What does the --filter command line argument do?
+
+The ```--filter``` argument enables or disables the filtering of generated instruction and output pairs based on certain keywords. By default, this is set to true, meaning that pairs containing specified keywords or phrases will be excluded from the output. Set this argument to false if you want to include all generated pairs, regardless of their content.
+
+
+### How can I improve the quality of the generated instruction and output pairs?
+
+You can try adjusting the ```--prompt_input``` command line argument to provide additional context or guidance for the model. This may help in generating more relevant and accurate instruction and output pairs. See the sample below:
+
+```
+python mindfeeder1-open-ai-gen.py --apikey=your_api_key --input=input.txt --prompt_input "Be very detailed with your responses and use bullet points in necessary to organize the outputs."
+```
+
+### How can I obtain an API key for OpenAI?
+
+To obtain an API key, you will need to sign up for an OpenAI account. Visit the OpenAI API Pricing page for more information on available plans and pricing.
+
+### Can I use a different model other than GPT-3.5-turbo?
+
+Yes, you can specify a different model using the --model command-line argument when running the generator script. However, the performance and results may vary depending on the model used. Currently ALL complete models are supported.
+
+### What is --max_workers and its recommended settings?
+
+Depending on how quickly / acuritly you want the output from this scrip to be. You will set accordinly. Higher settings yeild quicker results. Lower setting yield higher quality results.
+
+```--max_workers 12``` = Optimal Performance wirhout errors
+
+```--max_workers 20``` = Optimal Speed & Performance wirhout errors
+
+```--max_workers 30``` = Optimal Speed Performance with minimal errors
+
+#### What is --max_workers and its recommended settings?
+
+The key to this setting is to keep in mind the length of your responses from openai and they will stay under token length
+
+```--num_instructions 5``` = Optimal Performance wirhout errors
+
+#### What is --prompt_input and its recommended settings?
+
+Used to inject a specified prompt right before the main insrruction to openai
+
+```--prompt_input "Be as detailed as possible in your responses and use bullet points if needed to organize material."```
+
+
 # Credits
 Developed by Kyle Altenderfer ```altenderfer@gmail.com```
 
