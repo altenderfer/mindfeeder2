@@ -44,7 +44,7 @@ The input data should be in JSON format, with each element containing an "instru
 [
   {
     "instruction": "What kind of YouTube campaign is ideal for Max Conversion or Target CPA?",
-    "input": "ax Conversion or Target CPA are bidding strategies that can be leveraged for TrueView for action or conversion-oriented YouTube campaigns. However, you will not be able to select this campaign type unless you have already configured conversion in your account.",
+    "input": "Max Conversion or Target CPA are bidding strategies that can be leveraged for TrueView for action or conversion-oriented YouTube campaigns. However, you will not be able to select this campaign type unless you have already configured conversion in your account.",
     "output": "Max Conversion or Target CPA are ideal for TrueView for action or conversion-oriented YouTube campaigns, but can only be selected if you have already configured conversion in your account."
   }
 ]
