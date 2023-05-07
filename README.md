@@ -43,9 +43,9 @@ The input data should be in JSON format, with each element containing an "instru
 ```
 [
   {
-    "instruction": "What is \"viewable CPM\" in relation to Display ads?",
-    "input": "\"Viewable CPM\" refers to how much it costs for 1000 impressions of your ad. While many different bidding strategies are available for Display ads, it is important to remember that certain domains will command different rates for real estate on their sites. We found that the average rate was $2.80, so experimenting around that rate may be beneficial.",
-    "output": "\"Viewable CPM\" refers to how much it costs for 1000 impressions of your ad."
+    "instruction": "What kind of YouTube campaign is ideal for Max Conversion or Target CPA?",
+    "input": "ax Conversion or Target CPA are bidding strategies that can be leveraged for TrueView for action or conversion-oriented YouTube campaigns. However, you will not be able to select this campaign type unless you have already configured conversion in your account.",
+    "output": "Max Conversion or Target CPA are ideal for TrueView for action or conversion-oriented YouTube campaigns, but can only be selected if you have already configured conversion in your account."
   }
 ]
 ```
