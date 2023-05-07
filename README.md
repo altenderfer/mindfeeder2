@@ -20,20 +20,20 @@ pip install openai
 To use this program, run the following command:
 
 ```bash
-python mindfeeder2-open-ai-gen.py --apikey API_KEY --model MODEL_NAME --input INPUT_FILE --output OUTPUT_FILE --num_instructions NUM_INSTRUCTIONS --start_index START_INDEX --max_workers MAX_WORKERS --prompt_input PROMPT_INPUT --filter FILTER_RESULTS
+python mindfeeder2-open-ai-gen.py --apikey API_KEY --input INPUT_FILE --output OUTPUT_FILE --num_instructions 9 --max_workers 12 --prompt_input "Be very detailed with your responses and use bullet points as necessary to organize the material."
 ```
 
-Replace the placeholders with the appropriate values:
+The script accepts the following command line arguments:
 ```
-API_KEY: Your OpenAI API key.
-MODEL_NAME: The name of the OpenAI model to use (default: "gpt-3.5-turbo").
-INPUT_FILE: The path to the JSON file containing the input data.
-OUTPUT_FILE: The path to the JSON file where the generated data will be saved.
-NUM_INSTRUCTIONS: The number of new variations to generate for each IIO pair (default: 5).
-START_INDEX: The index in the input data to start processing from (default: 0).
-MAX_WORKERS: The maximum number of worker threads to use for processing (default: 3).
-PROMPT_INPUT: An optional string to add at the beginning of the prompt.
-FILTER_RESULTS: Whether to filter results based on certain phrases (default: True).
+--apikey: Your OpenAI API key.
+--model: The name of the OpenAI model to use (default: "gpt-3.5-turbo").
+--input: The path to the JSON file containing the input data.
+--output: The path to the JSON file where the generated data will be saved.
+--num_instructions: The number of new variations to generate for each IIO pair (default: 5).
+--start_index: The index in the input data to start processing from (default: 0).
+--max_workers: The maximum number of worker threads to use for processing (default: 3).
+--prompt_input: An optional string to add at the beginning of the prompt.
+--filter: Whether to filter results based on certain phrases (default: True).
 ```
 
 # Input Data Format
@@ -44,7 +44,7 @@ The input data should be in JSON format, with each element containing an "instru
 [
   {
     "instruction": "What is \"viewable CPM\" in relation to Display ads?",
-    "input": "\"Viewable CPM\" refers to how much it costs for 1000 impressions of your ad. While many different bidding strategies are available for Display ads, it is important to remember that certain domains will command different rates for real estate on their sites. SEMrush found that the average rate was $2.80, so experimenting around that rate may be beneficial.",
+    "input": "\"Viewable CPM\" refers to how much it costs for 1000 impressions of your ad. While many different bidding strategies are available for Display ads, it is important to remember that certain domains will command different rates for real estate on their sites. We found that the average rate was $2.80, so experimenting around that rate may be beneficial.",
     "output": "\"Viewable CPM\" refers to how much it costs for 1000 impressions of your ad."
   }
 ]
@@ -82,7 +82,7 @@ The ```--filter``` argument enables or disables the filtering of generated instr
 You can try adjusting the ```--prompt_input``` command line argument to provide additional context or guidance for the model. This may help in generating more relevant and accurate instruction and output pairs. See the sample below:
 
 ```
-python mindfeeder2-open-ai-gen.py --apikey=your_api_key --input=input.txt --prompt_input "Be very detailed with your responses and use bullet points as necessary to organize the outputs."
+python mindfeeder2-open-ai-gen.py --apikey=your_api_key --input=input.txt --prompt_input "Be very detailed with your responses and use bullet points as necessary to organize the material."
 ```
 
 ### How can I obtain an API key for OpenAI?
