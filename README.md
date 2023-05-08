@@ -17,6 +17,8 @@ pip install openai
 
 # Usage
 
+## Command Line
+
 To use this program, run the following command:
 
 ```bash
@@ -35,6 +37,31 @@ The script accepts the following command line arguments:
 --prompt_input: An optional string to add at the beginning of the prompt.
 --filter: Whether to filter results based on certain phrases (default: True).
 ```
+
+## GUI
+
+To use the GUI version of the script, run the following command:
+
+
+```bash
+python mindfeeder2-open-ai-gen-gui.py
+```
+
+This will open a window where you can input the required information:
+
+- API Key - Your OpenAI API key.
+- Model - The OpenAI language model you want to use (default is gpt-3.5-turbo).
+- Input File - The path to the JSON file containing the input/output pairs to generate new variations for.
+- Output File - The path to the JSON file where the new input/output pairs will be saved.
+- Num Instructions - The number of new variations to generate for each input/output pair.
+- Start Index - The index of the input/output pair to start generating new variations from.
+- Max Workers - The maximum number of workers to use for parallel processing.
+- Prompt Input - The prompt to use for generating new variations (optional).
+- Filter - Whether to filter out generated variations that do not contain enough information (default is True).
+
+Once you have filled in the required information, click the "Run" button to start generating new input/output pairs. You can stop the generation process at any time by clicking the "Stop & Wait Until Workers Finish" button.
+
+
 
 # Input Data Format
 
