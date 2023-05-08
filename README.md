@@ -100,7 +100,7 @@ Depending on how quickly / acuritly you want the output from this scrip to be. Y
 
 ```--max_workers 30``` = Optimal Speed Performance with minimal errors
 
-#### What is --max_workers and its recommended settings?
+#### What is --num_instructions and its recommended settings?
 
 The key to this setting is to keep in mind the length of your responses from openai and they will stay under token length
 
