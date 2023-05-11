@@ -149,6 +149,3 @@ Developed by Kyle Altenderfer ```altenderfer@gmail.com```
 
 This project is licensed under the [GNU General Public License v3.0](LICENSE).
 
-## Donate
-
-Venmo ```@altenderfer```
