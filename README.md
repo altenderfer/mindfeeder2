@@ -27,7 +27,8 @@ python mindfeeder2-open-ai-gen.py --apikey API_KEY --input INPUT_FILE --output O
 
 The script accepts the following command line arguments:
 ```
---apikey: Your OpenAI API key.
+--api_key: Your OpenAI API key.
+--api_base: Used to change the default openai endpoint, defaults to openai
 --model: The name of the OpenAI model to use (default: "gpt-3.5-turbo").
 --input: The path to the JSON file containing the input data.
 --output: The path to the JSON file where the generated data will be saved.
