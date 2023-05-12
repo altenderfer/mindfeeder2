@@ -16,8 +16,9 @@ def animate_connection():
             sys.stdout.flush()
             time.sleep(0.1)
 
-def connect_to_openai(api_key):
+def connect_to_openai(api_key, api_base):
     openai.api_key = api_key
+    openai.api_base = api_base
 
     t = threading.Thread(target=animate_connection, daemon=True)
     t.start()
@@ -139,15 +140,16 @@ def process_input_data(input_data, model, output_file, num_instructions, start_i
     save_to_file(new_dataset)
     print(f"Processing completed. Results saved to {output_file}")
 
-def main(api_key, model, input_file, output_file, num_instructions, start_index, max_workers, prompt_input, filter_results):
-    connect_to_openai(api_key)
+def main(api_key, model, input_file, output_file, num_instructions, start_index, max_workers, prompt_input, filter_results, api_base):
+    connect_to_openai(api_key, api_base)
 
     input_data = load_input_data(input_file)
     process_input_data(input_data, model, output_file, num_instructions, start_index, max_workers, prompt_input=prompt_input, filter_results=filter_results)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--apikey", default="your_api_key")
+    parser.add_argument("--api_key", default="your_api_key")
+    parser.add_argument("--api_base", default="https://api.openai.com/v1")
     parser.add_argument("--model", default="gpt-3.5-turbo")
     parser.add_argument("--input", default="input.json")
     parser.add_argument("--output", default="output.json")
@@ -156,11 +158,12 @@ if __name__ == "__main__":
     parser.add_argument("--max_workers", default=3, type=int)
     parser.add_argument("--prompt_input", default="", type=str)
     parser.add_argument("--filter", default=True, type=lambda x: (str(x).lower() == 'true'))
-
+    
     args = parser.parse_args()
 
     main(
-        api_key=args.apikey,
+        api_key=args.api_key,
+        api_base=args.api_base,
         model=args.model,
         input_file=args.input,
         output_file=args.output,
