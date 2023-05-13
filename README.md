@@ -51,6 +51,7 @@ python mindfeeder2-open-ai-gen-gui.py
 This will open a window where you can input the required information:
 
 - API Key - Your OpenAI API key.
+- API Base - Used to change the default openai endpoint, defaults to openai
 - Model - The OpenAI language model you want to use (default is gpt-3.5-turbo).
 - Input File - The path to the JSON file containing the IIO pairs to generate new variations for.
 - Output File - The path to the JSON file where the new IIO pairs will be saved.
@@ -120,6 +121,8 @@ To obtain an API key, you will need to sign up for an OpenAI account. Visit the 
 
 ### What is --max_workers and its recommended settings?
 
+#### If you are using another endpoint besides openai... PLEASE RESPECT THE RULES OF THAT ENDPOINT - That means 2-3 workers max! Open AI settings below...
+
 Depending on how quickly / acuritly you want the output from this scrip to be. You will set accordinly. Higher settings yeild quicker results. Lower setting yield higher quality results.
 
 ```--max_workers 12``` = Optimal Performance wirhout errors
@@ -128,13 +131,14 @@ Depending on how quickly / acuritly you want the output from this scrip to be. Y
 
 ```--max_workers 30``` = Optimal Speed Performance with minimal errors
 
-#### What is --num_instructions and its recommended settings?
+
+### What is --num_instructions and its recommended settings?
 
 The key to this setting is to keep in mind the length of your responses from openai and they will stay under token length
 
 ```--num_instructions 5``` = Optimal Performance wirhout errors
 
-#### What is --prompt_input and its recommended settings?
+### What is --prompt_input and its recommended settings?
 
 Used to inject a specified prompt right before the main insrruction to openai
 
