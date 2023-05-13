@@ -22,8 +22,9 @@ def animate_connection():
             sys.stdout.flush()
             time.sleep(0.1)
 
-def connect_to_openai(api_key):
+def connect_to_openai(api_key, api_base):
     openai.api_key = api_key
+    openai.api_base = api_base
 
     t = threading.Thread(target=animate_connection, daemon=True)
     t.start()
@@ -179,8 +180,8 @@ def browse_output_file():
         output_entry.insert(0, file_path)
 
 
-async def main_async(api_key, model, input_file, output_file, num_instructions, start_index, max_workers, prompt_input=False, filter_results=False, stop_flag=None):
-    connect_to_openai(api_key)
+async def main_async(api_key, api_base, model, input_file, output_file, num_instructions, start_index, max_workers, prompt_input=False, filter_results=False, stop_flag=None):
+    connect_to_openai(api_key, api_base)
 
     input_data = load_input_data(input_file)
     process_input_data(input_data, model, output_file, num_instructions, start_index, max_workers, prompt_input=prompt_input, filter_results=filter_results, stop_flag=stop_flag)
@@ -188,6 +189,7 @@ async def main_async(api_key, model, input_file, output_file, num_instructions, 
 
 def main(stop_flag):
     api_key = apikey_entry.get()
+    api_base = api_base_entry.get()
     model = model_var.get()
     input_file = input_entry.get()
     output_file = output_entry.get()
@@ -197,7 +199,7 @@ def main(stop_flag):
     prompt_input = prompt_input_entry.get()
     filter_results = filter_var.get()
 
-    asyncio.run(main_async(api_key, model, input_file, output_file, num_instructions, start_index, max_workers, prompt_input, filter_results, stop_flag=stop_flag))
+    asyncio.run(main_async(api_key, api_base, model, input_file, output_file, num_instructions, start_index, max_workers, prompt_input, filter_results, stop_flag=stop_flag))
 
 def main_thread():
     global stop_flag
@@ -226,74 +228,82 @@ apikey_label.grid(column=0, row=0, sticky=tk.W)
 apikey_entry = ttk.Entry(frame, width=30)
 apikey_entry.grid(column=1, row=0, sticky=tk.W)
 
+# API Base URL
+api_base_label = ttk.Label(frame, text="API Base URL:")
+api_base_label.grid(column=0, row=1, sticky=tk.W)
+api_base_entry = ttk.Entry(frame, width=30)
+api_base_entry.grid(column=1, row=1, sticky=tk.W)
+api_base_entry.insert(0, "https://api.openai.com/v1") # Default value
+
+
 # Model
 model_label = ttk.Label(frame, text="Model:")
-model_label.grid(column=0, row=1, sticky=tk.W)
+model_label.grid(column=0, row=2, sticky=tk.W)
 model_var = tk.StringVar()
 model_var.set("gpt-3.5-turbo")
 model_dropdown = ttk.OptionMenu(frame, model_var, "gpt-3.5-turbo", "gpt-3.5-turbo", "gpt-4", "gpt-4-32k")
-model_dropdown.grid(column=1, row=1, sticky=tk.W)
+model_dropdown.grid(column=1, row=2, sticky=tk.W)
 
 # Input File
 input_label = ttk.Label(frame, text="Input File:")
-input_label.grid(column=0, row=2, sticky=tk.W)
+input_label.grid(column=0, row=3, sticky=tk.W)
 input_entry = ttk.Entry(frame, width=30)
-input_entry.grid(column=1, row=2, sticky=tk.W)
+input_entry.grid(column=1, row=3, sticky=tk.W)
 input_browse = ttk.Button(frame, text="Browse", command=browse_input_file)
-input_browse.grid(column=2, row=2, sticky=tk.W)
+input_browse.grid(column=2, row=3, sticky=tk.W)
 
 # Output File
 output_label = ttk.Label(frame, text="Output File:")
-output_label.grid(column=0, row=3, sticky=tk.W)
+output_label.grid(column=0, row=4, sticky=tk.W)
 output_entry = ttk.Entry(frame, width=30)
-output_entry.grid(column=1, row=3, sticky=tk.W)
+output_entry.grid(column=1, row=4, sticky=tk.W)
 output_browse = ttk.Button(frame, text="Browse", command=browse_output_file)
-output_browse.grid(column=2, row=3, sticky=tk.W)
+output_browse.grid(column=2, row=4, sticky=tk.W)
 
 # Num Instructions
 num_instructions_label = ttk.Label(frame, text="Num Instructions:")
-num_instructions_label.grid(column=0, row=4, sticky=tk.W)
+num_instructions_label.grid(column=0, row=5, sticky=tk.W)
 num_instructions_entry = ttk.Spinbox(frame, from_=1, to=100, width=5)
-num_instructions_entry.grid(column=1, row=4, sticky=tk.W)
+num_instructions_entry.grid(column=1, row=5, sticky=tk.W)
 num_instructions_entry.delete(0, tk.END)
 num_instructions_entry.insert(0, "6")
 
 # Start Index
 start_index_label = ttk.Label(frame, text="Start Index:")
-start_index_label.grid(column=0, row=5, sticky=tk.W)
+start_index_label.grid(column=0, row=6, sticky=tk.W)
 start_index_entry = ttk.Spinbox(frame, from_=0, to=10000, width=5)
-start_index_entry.grid(column=1, row=5, sticky=tk.W)
+start_index_entry.grid(column=1, row=6, sticky=tk.W)
 start_index_entry.delete(0, tk.END)
 start_index_entry.insert(0, "0")
 
 # Max Workers
 max_workers_label = ttk.Label(frame, text="Max Workers:")
-max_workers_label.grid(column=0, row=6, sticky=tk.W)
+max_workers_label.grid(column=0, row=7, sticky=tk.W)
 max_workers_entry = ttk.Spinbox(frame, from_=1, to=100, width=5)
-max_workers_entry.grid(column=1, row=6, sticky=tk.W)
+max_workers_entry.grid(column=1, row=7, sticky=tk.W)
 max_workers_entry.delete(0, tk.END)
-max_workers_entry.insert(0, "12")
+max_workers_entry.insert(0, "3")
 
 # Prompt Input
 prompt_input_label = ttk.Label(frame, text="Prompt Input:")
-prompt_input_label.grid(column=0, row=7, sticky=tk.W)
+prompt_input_label.grid(column=0, row=8, sticky=tk.W)
 prompt_input_entry = ttk.Entry(frame, width=30)
-prompt_input_entry.grid(column=1, row=7, sticky=tk.W)
+prompt_input_entry.grid(column=1, row=8, sticky=tk.W)
 
 # Filter
 filter_label = ttk.Label(frame, text="Filter:")
-filter_label.grid(column=0, row=8, sticky=tk.W)
+filter_label.grid(column=0, row=9, sticky=tk.W)
 filter_var = tk.StringVar()
 filter_var.set("True")
 filter_dropdown = ttk.OptionMenu(frame, filter_var, "True", "True", "False")
-filter_dropdown.grid(column=1, row=8, sticky=tk.W)
+filter_dropdown.grid(column=1, row=9, sticky=tk.W)
 
 # Run Button
 run_button = ttk.Button(frame, text="Run", command=lambda: threading.Thread(target=main_thread, daemon=True).start())
-run_button.grid(column=1, row=9, pady=10)
+run_button.grid(column=1, row=10, pady=10)
 
 # Stop Button
 stop_button = ttk.Button(frame, text="Stop & wait until workers finish", command=stop_and_close)
-stop_button.grid(column=2, row=9, pady=10)
+stop_button.grid(column=2, row=10, pady=10)
 
 root.mainloop()
